@@ -17,8 +17,6 @@ const List = () => {
     }
   };
 
-  console.log(idx);
-
   const onConvertToJSONL = () => {
     const filterdata = idx.map((item) => dataArray[item]);
     console.log(filterdata);
