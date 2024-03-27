@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 
-const list = () => {
+const List = () => {
   const [idx, setIdx] = useState<number[]>([]);
   const router = useRouter();
   const { data } = router.query;
@@ -64,4 +64,4 @@ const list = () => {
   );
 };
 
-export default list;
+export default List;
