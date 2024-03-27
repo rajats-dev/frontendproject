@@ -27,29 +27,32 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center ">
       <h1 className="font-bold">Question-Answer Tool</h1>
       <textarea
         rows={10}
         cols={50}
         onChange={(e) => setTextInput(e.target.value)}
         placeholder="Enter your text here..."
+        className="border-2 border-solid"
       ></textarea>
-      <button
-        className="bg-red-600 w-fit text-fuchsia-50 rounded-md m-5 p-2"
-        onClick={onSubmitHandle}
-      >
-        Submit
-      </button>
-      <Link
-        href={{
-          pathname: "/list",
-          query: { data: JSON.stringify(setRes) },
-        }}
-        className="bg-green-600 w-fit text-fuchsia-50 rounded-md m-4 p-2"
-      >
-        View Result
-      </Link>
+      <div>
+        <button
+          className="bg-red-600 w-fit text-fuchsia-50 rounded-md m-3 p-2"
+          onClick={onSubmitHandle}
+        >
+          Submit
+        </button>
+        <Link
+          href={{
+            pathname: "/list",
+            query: { data: JSON.stringify(setRes) },
+          }}
+          className="bg-green-600 w-fit text-fuchsia-50 rounded-md m-4 p-2"
+        >
+          View Result
+        </Link>
+      </div>
     </div>
   );
 }

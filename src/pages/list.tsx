@@ -17,6 +17,8 @@ const List = () => {
     }
   };
 
+  console.log(idx);
+
   const onConvertToJSONL = () => {
     const filterdata = idx.map((item) => dataArray[item]);
     console.log(filterdata);
@@ -39,7 +41,8 @@ const List = () => {
     <div className="flex flex-col items-center">
       <button
         onClick={onConvertToJSONL}
-        className="bg-red-700 p-2 rounded text-cyan-50"
+        className="bg-red-700 p-2 rounded text-cyan-50 disabled:opacity-75"
+        disabled={idx.length === 0}
       >
         Download JSONL File
       </button>
