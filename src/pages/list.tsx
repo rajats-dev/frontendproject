@@ -9,8 +9,6 @@ const List = () => {
   const dataArray = dataString ? JSON.parse(dataString) : [];
   const allIdx = Array.from({ length: dataArray.length }, (_, i) => i);
 
-  console.log(allIdx);
-
   const onAddIdx = (i: number) => {
     if (idx.includes(i)) {
       let newIdx = idx.filter((el) => el !== i);
@@ -37,7 +35,6 @@ const List = () => {
       document.body.removeChild(anchor);
     }
   };
-  console.log(idx);
 
   return (
     <div className="flex flex-col items-center">
@@ -48,12 +45,22 @@ const List = () => {
       >
         Download JSONL File
       </button>
-      <button
-        onClick={() => setIdx(allIdx)}
-        className="bg-red-600 w-fit text-fuchsia-50 rounded-md m-1 p-2 hover:bg-red-800"
-      >
-        Select All
-      </button>
+      <div>
+        <button
+          onClick={() => setIdx(allIdx)}
+          className="bg-red-600 w-fit text-fuchsia-50 rounded-md m-1 p-1 hover:bg-red-800 disabled:opacity-75"
+          disabled={idx.length == allIdx.length}
+        >
+          Select All
+        </button>
+        <button
+          onClick={() => setIdx([])}
+          className="bg-red-600 w-fit text-fuchsia-50 rounded-md p-1 hover:bg-red-800 disabled:opacity-75"
+          disabled={idx.length == 0}
+        >
+          Unselect All
+        </button>
+      </div>
       {dataArray.map((item: any, i: number) => (
         <div
           className="flex border-2 border-solid border-black w-fit justify-start"
