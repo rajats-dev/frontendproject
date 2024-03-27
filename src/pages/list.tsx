@@ -7,6 +7,9 @@ const List = () => {
   const { data } = router.query;
   const dataString = data as string;
   const dataArray = dataString ? JSON.parse(dataString) : [];
+  const allIdx = Array.from({ length: dataArray.length }, (_, i) => i);
+
+  console.log(allIdx);
 
   const onAddIdx = (i: number) => {
     if (idx.includes(i)) {
@@ -34,15 +37,22 @@ const List = () => {
       document.body.removeChild(anchor);
     }
   };
+  console.log(idx);
 
   return (
     <div className="flex flex-col items-center">
       <button
         onClick={onConvertToJSONL}
-        className="bg-red-700 p-2 rounded text-cyan-50 disabled:opacity-75"
+        className="bg-red-700 p-2 rounded text-cyan-50 hover:bg-red-800 disabled:opacity-75"
         disabled={idx.length === 0}
       >
         Download JSONL File
+      </button>
+      <button
+        onClick={() => setIdx(allIdx)}
+        className="bg-red-600 w-fit text-fuchsia-50 rounded-md m-1 p-2 hover:bg-red-800"
+      >
+        Select All
       </button>
       {dataArray.map((item: any, i: number) => (
         <div

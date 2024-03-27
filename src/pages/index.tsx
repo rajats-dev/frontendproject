@@ -3,7 +3,7 @@ import { useState } from "react";
 
 export default function Home() {
   const [textInput, setTextInput] = useState<string>("");
-  const [setRes, setResponseData] = useState([]);
+  const [res, setResponseData] = useState([]);
 
   const onSubmitHandle = () => {
     const ApiCalling = async () => {
@@ -23,7 +23,11 @@ export default function Home() {
       }
     };
 
-    ApiCalling();
+    if (textInput) {
+      ApiCalling();
+    } else {
+      alert("Please enter some text");
+    }
   };
 
   return (
@@ -38,20 +42,24 @@ export default function Home() {
       ></textarea>
       <div>
         <button
-          className="bg-red-600 w-fit text-fuchsia-50 rounded-md m-3 p-2"
+          className="bg-red-600 w-fit text-fuchsia-50 rounded-md m-3 p-2 hover:bg-red-800"
           onClick={onSubmitHandle}
         >
           Submit
         </button>
-        <Link
-          href={{
-            pathname: "/list",
-            query: { data: JSON.stringify(setRes) },
-          }}
-          className="bg-green-600 w-fit text-fuchsia-50 rounded-md m-4 p-2"
-        >
-          View Result
-        </Link>
+        {res.length ? (
+          <Link
+            href={{
+              pathname: "/list",
+              query: { data: JSON.stringify(res) },
+            }}
+            className="bg-green-600 w-fit text-fuchsia-50 rounded-md m-4 p-2 hover:bg-green-800"
+          >
+            View Result
+          </Link>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );
